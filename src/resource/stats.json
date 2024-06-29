@@ -1,9 +1,10 @@
 {
-    "name": "Gneg",
+    "name": "Chara",
     "lvl": 1,
     "xp": 0,
-    "weapon": "\u041f\u0430\u043b\u043a\u0430",
+    "weapon": "\u041d\u043e\u0436",
     "armor": "\u0411\u0438\u043d\u0442",
     "inventory": [],
-    "location": 0
+    "location": 0,
+    "hp": 0
 }

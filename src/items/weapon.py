@@ -8,9 +8,9 @@ class Weapon:
         return self.damage
 
     def __str__(self):
-        return (f"Название: {self.name}\n"
-                f"Описание: {self.description}\n"
-                f"Наносит урона: {self.get_damage()}")
+        return (f"\tНазвание: {self.name}\n"
+                f"\tОписание: {self.description}\n"
+                f"\tНаносит урона: {self.get_damage()}")
 
     def use(self, owner):
         owner.switch_weapon(self)

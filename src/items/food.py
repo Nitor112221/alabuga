@@ -8,9 +8,9 @@ class Food:
         return self.amount_heal
 
     def __str__(self):
-        return (f"Название: {self.name}\n"
-                f"Описание: {self.description}\n"
-                f"Исцеляет {self.get_amount_heal()} хп")
+        return (f"\tНазвание: {self.name}\n"
+                f"\tОписание: {self.description}\n"
+                f"\tИсцеляет {self.get_amount_heal()} хп")
 
     def use(self, owner):
         owner.heal(self.get_amount_heal())

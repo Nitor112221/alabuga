@@ -7,6 +7,8 @@ import src.items.armor as armor
 import src.scripts.walk as walk
 import json
 
+from src.scripts import prologue
+
 
 def load_data():
     global main_hero
@@ -24,6 +26,7 @@ def load_data():
 
         main_hero = MainHero(items[stats["weapon"]], items[stats["armor"]], stats["lvl"], stats["name"],
                              stats["xp"], stats["location"])
+
         for i in stats["inventory"]:
             main_hero.get_item(items[i])
 
@@ -43,9 +46,23 @@ def save_data():
 
 main_hero = None
 
+
+# Гайд
+print("УПРАВЛЕНИЕ")
+print("чтобы вызвать команду, введите с клавиатуры нужную команду и нажмите enter")
+print("КОМАНДЫ")
+print("e - открыть инвентарь")
+print("back - выйти из инвентаря")
+print("Просто enter - следующая фраза")
+print("Чтобы начать нажмите enter")
+
+
+# загрузка сохранения/создание нового персонажа
 if os.path.isfile("resource/stats.json"):
     load_data()
 else:
+    # если игру запустили в первый раз, то игроку нужно показать пролог
+    prologue.prolog()
     name = input("Назовите своего персонажа: ")
     if name == "Chara":  # отсылка
         main_hero = MainHero(weapon.knife, armor.bandage, 1, name, 0, 0)
@@ -53,5 +70,7 @@ else:
         main_hero = MainHero(weapon.stick, armor.bandage, 1, name, 0, 0)
     save_data()
 
+# запуск истории
 walk.walk(main_hero)
 save_data()
+load_data()

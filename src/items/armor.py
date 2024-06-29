@@ -8,9 +8,9 @@ class Armor:
         return self.protection
 
     def __str__(self):
-        return (f"Название: {self.name}\n"
-                f"Описание: {self.description}\n"
-                f"Защита: {self.get_protection()}")
+        return (f"\tНазвание: {self.name}\n"
+                f"\tОписание: {self.description}\n"
+                f"\tЗащита: {self.get_protection()}")
 
     def use(self, owner):
         owner.switch_armor(self)
