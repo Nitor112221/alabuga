@@ -18,7 +18,8 @@ def load_data():
             "Лук": weapon.bow,
             "Бинт": armor.bandage,
             "Яблоко": food.apple,
-            "Стейк": food.steak
+            "Стейк": food.steak,
+            "Нож": weapon.knife
         }
 
         main_hero = MainHero(items[stats["weapon"]], items[stats["armor"]], stats["lvl"], stats["name"],
@@ -46,7 +47,10 @@ if os.path.isfile("resource/stats.json"):
     load_data()
 else:
     name = input("Назовите своего персонажа: ")
-    main_hero = MainHero(weapon.stick, armor.bandage, 1, name, 0, 0)
+    if name == "Chara":  # отсылка
+        main_hero = MainHero(weapon.knife, armor.bandage, 1, name, 0, 0)
+    else:
+        main_hero = MainHero(weapon.stick, armor.bandage, 1, name, 0, 0)
     save_data()
 
 walk.walk(main_hero)
