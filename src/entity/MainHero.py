@@ -1,4 +1,4 @@
-from Base import Base
+from src.entity.Base import Base
 
 
 class MainHero(Base):
@@ -10,7 +10,7 @@ class MainHero(Base):
         self.exp_for_lvl_up = 50
         self.xp = xp
         self.inventory = []  # инвентарь хранит разные предметы, это могут быть еда для исцеления, броня и оружее
-        super().__init__(20 + (lvl - 1) * 3, weapon.get_damage + (lvl - 1) * 0.5, armor.get_protection + (
+        super().__init__(20 + (lvl - 1) * 3, weapon.get_damage() + (lvl - 1) * 0.5, armor.get_protection() + (
                     lvl - 1) * 0.5)  # за каждый уровень добавляет + 3 хп и по 0.5 урона и брони
 
     def switch_weapon(self, new_weapon):
@@ -29,7 +29,7 @@ class MainHero(Base):
         self.inventory[index].use(self)  # у брони, оружия и еды есть метод use по принципу полиморфизм
 
     def str_inventory(self):
-        return "\t\n".join(self.inventory)
+        return "\t\n".join([str(i + 1) + ". " + item for i, item in enumerate(self.inventory)])
 
     def __str__(self):
         return (
@@ -37,10 +37,10 @@ class MainHero(Base):
             f"•Уровень: {self.lvl}\n"
             f"•Максимальное здоровье: {self.max_hp}\n"
             f"•Текущий уровень здоровья: {self.hp}\n"
-            f"•Опыта до нового уровня: {self.exp_for_lvl_up - self.xp}"
+            f"•Опыта до нового уровня: {self.exp_for_lvl_up - self.xp}\n"
             f"•Защита: {self.protection}\n"
             f"•Урон: {self.damage}\n"
-            f"•Оружее: {self.weapon}\n"
+            f"•Оружее:\n{self.weapon}\n"
             f"•Броня: {self.armor}\n"
             f"•Инвентарь:\n"
             f"    {self.str_inventory()}")

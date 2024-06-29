@@ -14,3 +14,6 @@ class Armor:
 
     def use(self, owner):
         owner.switch_armor(self)
+
+
+bandage = Armor(2, "Бинт", "Тканевая повязка, не стоит от неё многое ожидать")

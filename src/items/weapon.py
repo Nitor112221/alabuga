@@ -14,3 +14,8 @@ class Weapon:
 
     def use(self, owner):
         owner.switch_weapon(self)
+
+
+stick = Weapon(1, "Палка", "Просто палка, первое что попалось под руку")
+sword = Weapon(5, "Меч", "Обычное оружее средневековых людей")
+bow = Weapon(4, "Лук", "Дальнобойное оружее. НЕ ОВОЩ")
