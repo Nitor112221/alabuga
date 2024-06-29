@@ -12,6 +12,20 @@ def walk(mainhero):
             print(mainhero)
             print("Чтобы использовать предмет из инвентаря введите его номер")
             print("Чтобы вернутся к игре введите back")
+        elif command == "back":
+            in_inventory = False
+        elif in_inventory and command.isdigit():
+            if 0 >= int(command) or int(command) > len(mainhero.inventory):
+                print("Неверное число")
+                print(mainhero)
+                print("Чтобы использовать предмет из инвентаря введите его номер")
+                print("Чтобы вернутся к игре введите back")
+                continue
+            mainhero.use(int(command) - 1)
+            print(mainhero)
+            print("Чтобы использовать предмет из инвентаря введите его номер")
+            print("Чтобы вернутся к игре введите back")
 
         if not in_inventory:
             print(scenario[i])
+            i += 1

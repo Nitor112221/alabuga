@@ -29,7 +29,7 @@ class MainHero(Base):
         self.inventory[index].use(self)  # у брони, оружия и еды есть метод use по принципу полиморфизм
 
     def str_inventory(self):
-        return "\t\n".join([str(i + 1) + ". " + item for i, item in enumerate(self.inventory)])
+        return "\n\t".join([str(i + 1) + ". " + str(item) for i, item in enumerate(self.inventory)])
 
     def __str__(self):
         return (
@@ -43,7 +43,7 @@ class MainHero(Base):
             f"•Оружее:\n{self.weapon}\n"
             f"•Броня: {self.armor}\n"
             f"•Инвентарь:\n"
-            f"    {self.str_inventory()}")
+            f"  {self.str_inventory()}")
 
     def lvl_up(self, amount_xp):
         self.lvl += (amount_xp + self.xp) // self.exp_for_lvl_up
@@ -51,4 +51,10 @@ class MainHero(Base):
         self.damage = self.weapon.get_damage + (self.lvl - 1) * 0.5
         self.protection = self.armor.get_protection + (self.lvl - 1) * 0.5
         self.max_hp = 20 + (self.lvl - 1) * 3
+
+    def get_item(self, item):
+        self.inventory.append(item)
+
+    def remove_item(self, item):
+        self.inventory.remove(item)
 

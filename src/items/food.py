@@ -14,6 +14,7 @@ class Food:
 
     def use(self, owner):
         owner.heal(self.get_amount_heal())
+        owner.remove_item(self)
 
 
 apple = Food(5, "Яблоко", "Вскусное, сочное, сладкое")
