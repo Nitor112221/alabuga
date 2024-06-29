@@ -12,7 +12,7 @@ class MainHero(Base):
         self.location = location
         self.inventory = []  # инвентарь хранит разные предметы, это могут быть еда для исцеления, броня и оружее
         super().__init__(20 + (lvl - 1) * 3, weapon.get_damage() + (lvl - 1) * 0.5, armor.get_protection() + (
-                    lvl - 1) * 0.5)  # за каждый уровень добавляет + 3 хп и по 0.5 урона и брони
+                lvl - 1) * 0.5)  # за каждый уровень добавляет + 3 хп и по 0.5 урона и брони
 
     def switch_weapon(self, new_weapon):
         self.inventory.remove(new_weapon)
@@ -49,8 +49,8 @@ class MainHero(Base):
     def lvl_up(self, amount_xp):
         self.lvl += (amount_xp + self.xp) // self.exp_for_lvl_up
         self.xp = (amount_xp + self.xp) % self.exp_for_lvl_up
-        self.damage = self.weapon.get_damage + (self.lvl - 1) * 0.5
-        self.protection = self.armor.get_protection + (self.lvl - 1) * 0.5
+        self.damage = self.weapon.get_damage() + (self.lvl - 1) * 0.5
+        self.protection = self.armor.get_protection() + (self.lvl - 1) * 0.5
         self.max_hp = 20 + (self.lvl - 1) * 3
 
     def get_item(self, item):
@@ -58,4 +58,3 @@ class MainHero(Base):
 
     def remove_item(self, item):
         self.inventory.remove(item)
-

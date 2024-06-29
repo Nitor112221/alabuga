@@ -8,6 +8,7 @@ import src.scripts.walk as walk
 import json
 
 from src.scripts import prologue
+from src.scripts.first_fight import first_fight
 
 
 def load_data():
@@ -68,9 +69,18 @@ else:
         main_hero = MainHero(weapon.knife, armor.bandage, 1, name, 0, 0)
     else:
         main_hero = MainHero(weapon.stick, armor.bandage, 1, name, 0, 0)
+    main_hero.get_item(food.apple)
+    main_hero.get_item(food.apple)
+    main_hero.get_item(food.apple)
+    main_hero.get_item(food.steak)
     save_data()
 
 # запуск истории
+while main_hero.location == 0 and not first_fight(main_hero):
+    load_data()
+save_data()
+load_data()  # загрузка нужна, чтобы востановить здоровье после сценария
+
 walk.walk(main_hero)
 save_data()
 load_data()

@@ -16,5 +16,3 @@ class Base:
 
     def heal(self, amount):
         self.hp = min(self.max_hp, self.hp + amount)
-
-

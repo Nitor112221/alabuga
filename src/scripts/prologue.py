@@ -1,5 +1,4 @@
 def prolog():
-    in_inventory = False
     input()  # необходим холостой клик
     i = 0  # индекс сообщения
     scenario = [  # события в сценарии
