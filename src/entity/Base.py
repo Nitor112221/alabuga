@@ -9,10 +9,10 @@ class Base:
         return self.hp <= 0
 
     def hit(self, target):
-        target.hurt(self)
+        target.hurt(self.damage)
 
-    def hurt(self, target):
-        self.hp -= target.damage * ((100 - self.protection) / 100)
+    def hurt(self, amount):
+        self.hp -= amount * ((100 - self.protection) / 100)
 
     def heal(self, amount):
         self.hp = min(self.max_hp, self.hp + amount)
