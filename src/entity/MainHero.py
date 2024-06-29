@@ -2,13 +2,14 @@ from src.entity.Base import Base
 
 
 class MainHero(Base):
-    def __init__(self, weapon, armor, lvl, name, xp):
+    def __init__(self, weapon, armor, lvl, name, xp, location):
         self.weapon = weapon
         self.armor = armor
         self.lvl = lvl
         self.name = name
         self.exp_for_lvl_up = 50
         self.xp = xp
+        self.location = location
         self.inventory = []  # инвентарь хранит разные предметы, это могут быть еда для исцеления, броня и оружее
         super().__init__(20 + (lvl - 1) * 3, weapon.get_damage() + (lvl - 1) * 0.5, armor.get_protection() + (
                     lvl - 1) * 0.5)  # за каждый уровень добавляет + 3 хп и по 0.5 урона и брони
