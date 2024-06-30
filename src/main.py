@@ -7,7 +7,7 @@ import src.items.armor as armor
 import src.scripts.walk as walk
 import json
 
-from src.scripts import prologue
+from src.scripts import prologue, blacksmith, camp_of_thieves
 from src.scripts.first_fight import first_fight
 
 
@@ -22,7 +22,8 @@ def load_data():
             "Бинт": armor.bandage,
             "Яблоко": food.apple,
             "Стейк": food.steak,
-            "Нож": weapon.knife
+            "Нож": weapon.knife,
+            "Кольчуга": armor.chain_mail
         }
 
         main_hero = MainHero(items[stats["weapon"]], items[stats["armor"]], stats["lvl"], stats["name"],
@@ -80,7 +81,15 @@ while main_hero.location == 0 and not first_fight(main_hero):
     load_data()
 save_data()
 load_data()  # загрузка нужна, чтобы востановить здоровье после сценария
-
-walk.walk(main_hero)
+if main_hero.location == 1:
+    walk.walk(main_hero)
+    save_data()
+    load_data()
+if main_hero.location == 2:
+    blacksmith.blacksmith(main_hero)
+    save_data()
+    load_data()
+if main_hero.location == 3 and not camp_of_thieves.camp_of_thieves(main_hero):
+    load_data()
 save_data()
 load_data()

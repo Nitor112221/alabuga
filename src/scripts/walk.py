@@ -1,11 +1,22 @@
+from src.items import weapon
+
+
 def walk(main_hero):
     in_inventory = False
     i = 0  # индекс сообщения
-    scenario = [lambda: print("Я вышел погулять"),
-                lambda: print("Иду"),
-                lambda: print("Всё ещё иду"),
-                lambda: print("И опять иду"),
-                lambda: [main_hero.hurt(5), print("Вы споткнулись")]]
+    scenario = [lambda: print("После битвы с манекеном вы поняли, как жестока магия гоблинов"),
+                lambda: print("Но вам повезло, разобрав манекен, вы смогли сделать лук"),
+                lambda: [main_hero.get_item(weapon.bow), print("Получен новый предмет - Лук")],
+                lambda: print("Чтобы взять его в качестве оружия, зайдите в инвентарь, нажав e и enter"),
+                lambda: print("Теперь, когда у вас новое оружее, вы можете двигатся дальше"),
+                lambda: print("Всю власть в вашем поселении держит лишь 1 гоблин - ваш заклятый враг"),
+                lambda: print("Он не помогал развитию города"),
+                lambda: print("Как раз таки напротив"),
+                lambda: print("Поднимал нологи"),
+                lambda: print("Воровал из казны"),
+                lambda: print("А также считал всех эльфов своими рабами"),
+                lambda: print("Вы решили положить конец его диктатуре")
+                ]
     while True:
         command = input()
         if command == 'e':
@@ -29,6 +40,7 @@ def walk(main_hero):
 
         if not in_inventory:
             if i == len(scenario):
+                main_hero.location = 2
                 break
             scenario[i]()
             i += 1
