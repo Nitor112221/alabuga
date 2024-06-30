@@ -81,11 +81,11 @@ while main_hero.location == 0 and not first_fight(main_hero):
     load_data()
 save_data()
 load_data()  # загрузка нужна, чтобы востановить здоровье после сценария
-while main_hero.location == 1:
+if main_hero.location == 1:
     walk.walk(main_hero)
     save_data()
     load_data()
-while main_hero.location == 2:
+if main_hero.location == 2:
     blacksmith.blacksmith(main_hero)
     save_data()
     load_data()
