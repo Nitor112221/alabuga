@@ -33,6 +33,8 @@ def camp_of_thieves(main_hero):
             print(enemy)
         elif command == "a":
             main_hero.hit(enemy)
+            if enemy.is_dead():
+                continue
             move = 1
         elif in_inventory and command.isdigit():
             if 0 >= int(command) or int(command) > len(main_hero.inventory):
@@ -47,6 +49,7 @@ def camp_of_thieves(main_hero):
 
         if move == 1:
             enemy.hit(main_hero)
+            move = 0
         if main_hero.is_dead():
             print("Вы погибли")
             return False

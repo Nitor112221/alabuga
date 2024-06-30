@@ -18,14 +18,13 @@ def final_fight(main_hero):
                 lambda: print("[Гоблин] Так давай начнём эту битву и положим возмущениям конец"),
                 lambda: print("[Гоблин] Может так эльфы наконец перестанут возмущаться и будут работать молча"),
                 ]
-    for i in range(len(scenario)):
-        input()
-        scenario[i]()
     enemy = Enemy(100, 10, 10, "Гоблин царь")
     move = 0  # 0 - ход игрока, 1 - ход врага
-
+    is_fight = False
+    i = 0
     while not enemy.is_dead():
-        print(f"Ваш ход, у {enemy.name} осталось {round(enemy.hp, 3)}, у вас {round(main_hero.hp, 3)}")
+        if is_fight:
+            print(f"Ваш ход, у {enemy.name} осталось {round(enemy.hp, 3)}, у вас {round(main_hero.hp, 3)}")
         command = input()
         if command == 'e':
             in_inventory = True
@@ -36,8 +35,10 @@ def final_fight(main_hero):
             in_inventory = False
         elif command == "i":
             print(enemy)
-        elif command == "a":
+        elif command == "a" and is_fight:
             main_hero.hit(enemy)
+            if enemy.is_dead():
+                continue
             move = 1
         elif in_inventory and command.isdigit():
             if 0 >= int(command) or int(command) > len(main_hero.inventory):
@@ -52,9 +53,15 @@ def final_fight(main_hero):
 
         if move == 1:
             enemy.hit(main_hero)
+            move = 0
         if main_hero.is_dead():
             print("Вы погибли")
             return False
+        if i == len(scenario):
+            is_fight = True
+        elif in_inventory != len(scenario) and not in_inventory:
+            scenario[i]()
+            i += 1
     main_hero.location = 5
     print("Вы победили и получили 10000 опыта")
     main_hero.lvl_up(10000)

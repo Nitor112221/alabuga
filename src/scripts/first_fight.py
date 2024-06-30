@@ -35,6 +35,8 @@ def first_fight(main_hero):
             print(enemy)
         elif command == "a":
             main_hero.hit(enemy)
+            if enemy.is_dead():
+                continue
             move = 1
         elif in_inventory and command.isdigit():
             if 0 >= int(command) or int(command) > len(main_hero.inventory):
@@ -43,12 +45,14 @@ def first_fight(main_hero):
                 print("Чтобы использовать предмет из инвентаря введите его номер")
                 print("Чтобы вернутся к игре введите back")
                 continue
-            main_hero.use(int(command) - 1)
-            print("Вы использовали предмет")
-            move = 1
+            else:
+                main_hero.use(int(command) - 1)
+                print("Вы использовали предмет")
+                move = 1
 
         if move == 1:
             enemy.hit(main_hero)
+            move = 0
         if main_hero.is_dead():
             print("Вы погибли")
             return False
