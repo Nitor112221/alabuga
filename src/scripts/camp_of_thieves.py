@@ -51,7 +51,7 @@ def camp_of_thieves(main_hero):
             print("Вы погибли")
             return False
     main_hero.location = 4
-    print("Вы победили и полусили 400 опыта")
+    print("Вы победили и получили 400 опыта")
     main_hero.lvl_up(400)
     input()
     print("Общарившись в их лагере, вы украли меч и немного еды")

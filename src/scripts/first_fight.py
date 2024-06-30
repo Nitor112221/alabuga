@@ -53,6 +53,6 @@ def first_fight(main_hero):
             print("Вы погибли")
             return False
     main_hero.location = 1
-    print("Вы победили и полусили 50 опыта")
+    print("Вы победили и получили 50 опыта")
     main_hero.lvl_up(50)
     return True

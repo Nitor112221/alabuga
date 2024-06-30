@@ -7,7 +7,7 @@ import src.items.armor as armor
 import src.scripts.walk as walk
 import json
 
-from src.scripts import prologue, blacksmith, camp_of_thieves
+from src.scripts import prologue, blacksmith, camp_of_thieves, final_fight, final_prologue
 from src.scripts.first_fight import first_fight
 
 
@@ -93,3 +93,8 @@ if main_hero.location == 3 and not camp_of_thieves.camp_of_thieves(main_hero):
     load_data()
 save_data()
 load_data()
+if main_hero.location == 4 and not final_fight.final_fight(main_hero):
+    load_data()
+save_data()
+load_data()
+final_prologue.prolog(main_hero)
